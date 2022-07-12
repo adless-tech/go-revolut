@@ -4,12 +4,14 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/rysavyvladan/go-revolut/merchant/1.0/request"
 	"net/http"
+
+	"github.com/rysavyvladan/go-revolut/merchant/1.0/request"
 )
 
 type OrderService struct {
 	apiKey string
+	domain string
 }
 
 type OrderType string
@@ -284,7 +286,7 @@ type RefundResp struct {
 func (a *OrderService) Create(orderReq *OrderReq) (*OrderResp, error) {
 	resp, statusCode, err := request.New(request.Config{
 		Method:      http.MethodPost,
-		Url:         "https://merchant.revolut.com/api/1.0/orders",
+		Url:         "%s/api/1.0/orders",
 		ApiKey:      a.apiKey,
 		Body:        orderReq,
 		ContentType: request.ContentType_APPLICATION_JSON,
@@ -310,7 +312,7 @@ func (a *OrderService) Create(orderReq *OrderReq) (*OrderResp, error) {
 func (a *OrderService) WithId(id string) (*OrderResp, error) {
 	resp, statusCode, err := request.New(request.Config{
 		Method: http.MethodGet,
-		Url:    fmt.Sprintf("https://merchant.revolut.com/api/1.0/orders/%s", id),
+		Url:    fmt.Sprintf("%s/api/1.0/orders/%s", a.domain, id),
 		ApiKey: a.apiKey,
 	})
 	if err != nil {
@@ -335,7 +337,7 @@ func (a *OrderService) WithId(id string) (*OrderResp, error) {
 func (a *OrderService) Capture(id string) (*OrderResp, error) {
 	resp, statusCode, err := request.New(request.Config{
 		Method: http.MethodPost,
-		Url:    fmt.Sprintf("https://merchant.revolut.com/api/1.0/orders/%s/capture", id),
+		Url:    fmt.Sprintf("%s/api/1.0/orders/%s/capture", a.domain, id),
 		ApiKey: a.apiKey,
 	})
 	if err != nil {
@@ -360,7 +362,7 @@ func (a *OrderService) Capture(id string) (*OrderResp, error) {
 func (a *OrderService) Cancel(id string) (*OrderResp, error) {
 	resp, statusCode, err := request.New(request.Config{
 		Method: http.MethodPost,
-		Url:    fmt.Sprintf("https://merchant.revolut.com/api/1.0/orders/%s/cancel", id),
+		Url:    fmt.Sprintf("%s/api/1.0/orders/%s/cancel", a.domain, id),
 		ApiKey: a.apiKey,
 	})
 	if err != nil {
@@ -385,7 +387,7 @@ func (a *OrderService) Cancel(id string) (*OrderResp, error) {
 func (a *OrderService) Refund(id string, refundReq *RefundReq) (*RefundResp, error) {
 	resp, statusCode, err := request.New(request.Config{
 		Method:      http.MethodPost,
-		Url:         fmt.Sprintf("https://merchant.revolut.com/api/1.0/orders/%s/refund", id),
+		Url:         fmt.Sprintf("%s/api/1.0/orders/%s/refund", a.domain, id),
 		ApiKey:      a.apiKey,
 		Body:        refundReq,
 		ContentType: request.ContentType_APPLICATION_JSON,

@@ -3,12 +3,15 @@ package merchant
 import (
 	"encoding/json"
 	"errors"
-	"github.com/rysavyvladan/go-revolut/merchant/1.0/request"
+	"fmt"
 	"net/http"
+
+	"github.com/rysavyvladan/go-revolut/merchant/1.0/request"
 )
 
 type WebhookService struct {
 	apiKey string
+	domain string
 }
 
 type WebhookUrl struct {
@@ -48,7 +51,7 @@ func (w *WebhookService) List() ([]*WebhookUrl, error) {
 
 	resp, statusCode, err := request.New(request.Config{
 		Method: http.MethodGet,
-		Url:    "https://merchant.revolut.com/api/1.0/webhooks",
+		Url:    fmt.Sprintf("%s/api/1.0/webhooks", w.domain),
 		ApiKey: w.apiKey,
 	})
 	if err != nil {
