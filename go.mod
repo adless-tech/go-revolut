@@ -1,4 +1,4 @@
-module github.com/rysavyvladan/go-revolut
+module github.com/adless-tech/go-revolut
 
 go 1.14
 

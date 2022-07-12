@@ -2,9 +2,10 @@ package business
 
 import (
 	"errors"
-	"github.com/rysavyvladan/go-revolut/business/1.0/request"
 	"net/http"
 	"time"
+
+	"github.com/adless-tech/go-revolut/business/1.0/request"
 )
 
 type WebhookService struct {

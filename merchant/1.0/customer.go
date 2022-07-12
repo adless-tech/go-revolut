@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/rysavyvladan/go-revolut/merchant/1.0/request"
+	"github.com/adless-tech/go-revolut/merchant/1.0/request"
 )
 
 type CustomerService struct {

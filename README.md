@@ -17,7 +17,7 @@ go-revolut is a Go client library for the [Revolut API](https://developers.revol
     
 ### Install
 ```
-    go get github.com/rysavyvladan/go-revolut
+    go get github.com/adless-tech/go-revolut
 ```
 
 ## Business API

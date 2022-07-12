@@ -4,9 +4,10 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/rysavyvladan/go-revolut/business/1.0/request"
 	"net/http"
 	"time"
+
+	"github.com/adless-tech/go-revolut/business/1.0/request"
 )
 
 type CounterpartyService struct {

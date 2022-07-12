@@ -5,10 +5,11 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/dgrijalva/jwt-go"
-	"github.com/rysavyvladan/go-revolut/business/1.0/request"
 	"net/http"
 	"net/url"
+
+	"github.com/adless-tech/go-revolut/business/1.0/request"
+	"github.com/dgrijalva/jwt-go"
 )
 
 type OAuthService struct {

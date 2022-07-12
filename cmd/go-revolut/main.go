@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	merchant "github.com/rysavyvladan/go-revolut/merchant/1.0"
+
+	merchant "github.com/adless-tech/go-revolut/merchant/1.0"
 )
 
 func main() {
