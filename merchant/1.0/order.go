@@ -104,6 +104,7 @@ type Fee struct {
 type Payment struct {
 	Type          string `json:"type,omitempty"`
 	Amount        Amount `json:"amount,omitempty"`
+	State         string `json:"state,omitempty"`
 	CreatedDate   int64  `json:"created_date,omitempty"`
 	UpdatedDate   int64  `json:"updated_date,omitempty"`
 	CompletedDate int    `json:"completed_date,omitempty"`
