@@ -300,7 +300,7 @@ func (a *OrderService) Create(orderReq *OrderReq) (*OrderResp, error) {
 		return nil, errors.New(fmt.Sprintf("%s [status: %d]", string(resp), statusCode))
 	}
 
-	var r *OrderResp
+	r := &OrderResp{}
 	if err := json.Unmarshal(resp, r); err != nil {
 		return nil, err
 	}
@@ -324,7 +324,7 @@ func (a *OrderService) WithId(id string) (*OrderResp, error) {
 		return nil, errors.New(fmt.Sprintf("Status: %d\n\nResponse: %s", statusCode, string(resp)))
 	}
 
-	var r *OrderResp
+	r := &OrderResp{}
 	if err := json.Unmarshal(resp, r); err != nil {
 		return nil, err
 	}
@@ -349,7 +349,7 @@ func (a *OrderService) Capture(id string) (*OrderResp, error) {
 		return nil, errors.New(fmt.Sprintf("Status: %d\n\nResponse: %s", statusCode, string(resp)))
 	}
 
-	var r *OrderResp
+	r := &OrderResp{}
 	if err := json.Unmarshal(resp, r); err != nil {
 		return nil, err
 	}
@@ -374,7 +374,7 @@ func (a *OrderService) Cancel(id string) (*OrderResp, error) {
 		return nil, errors.New(fmt.Sprintf("Status: %d\n\nResponse: %s", statusCode, string(resp)))
 	}
 
-	var r *OrderResp
+	r := &OrderResp{}
 	if err := json.Unmarshal(resp, r); err != nil {
 		return nil, err
 	}
@@ -401,7 +401,7 @@ func (a *OrderService) Refund(id string, refundReq *RefundReq) (*RefundResp, err
 		return nil, errors.New(fmt.Sprintf("Status: %d\n\nResponse: %s", statusCode, string(resp)))
 	}
 
-	var r *RefundResp
+	r := &RefundResp{}
 	if err := json.Unmarshal(resp, r); err != nil {
 		return nil, err
 	}
