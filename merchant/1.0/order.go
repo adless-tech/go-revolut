@@ -81,8 +81,8 @@ const (
 )
 
 type Amount struct {
-	Value    int    `json:"value,omitempty"`
-	Currency string `json:"currency,omitempty"`
+	Value    int    `json:"value"`
+	Currency string `json:"currency"`
 }
 
 type FeeType string
@@ -233,7 +233,7 @@ const (
 
 type OrderReq struct {
 	// Minor amount
-	Amount int `json:"amount,omitempty"`
+	Amount int `json:"amount"`
 	// Capture mode. If it is equal to null then AUTOMATIC is used
 	CaptureMode CaptureMode `json:"capture_mode,omitempty"`
 	// Merchant order ID
