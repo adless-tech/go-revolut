@@ -296,8 +296,8 @@ func (a *OrderService) Create(orderReq *OrderReq) (*OrderResp, error) {
 		return nil, err
 	}
 
-	if statusCode != http.StatusOK {
-		return nil, errors.New(fmt.Sprintf("Status: %d\n\nResponse: %s", statusCode, string(resp)))
+	if statusCode != http.StatusOK && statusCode != http.StatusCreated {
+		return nil, errors.New(fmt.Sprintf("%s [status: %d]", string(resp), statusCode))
 	}
 
 	var r *OrderResp
