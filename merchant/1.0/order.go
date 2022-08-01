@@ -287,7 +287,7 @@ type RefundResp struct {
 func (a *OrderService) Create(orderReq *OrderReq) (*OrderResp, error) {
 	resp, statusCode, err := request.New(request.Config{
 		Method:      http.MethodPost,
-		Url:         "%s/api/1.0/orders",
+		Url:         fmt.Sprintf("%s/api/1.0/orders", a.domain),
 		ApiKey:      a.apiKey,
 		Body:        orderReq,
 		ContentType: request.ContentType_APPLICATION_JSON,
