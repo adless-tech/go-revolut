@@ -152,6 +152,8 @@ type Check struct {
 type Card struct {
 	// Card type
 	CardType CardType `json:"card_type,omitempty"`
+	// Card type
+	CardBrand CardType `json:"card_brand,omitempty"`
 	// Card funding
 	Funding Funding `json:"funding,omitempty"`
 	// Card BIN
