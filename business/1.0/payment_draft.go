@@ -18,60 +18,60 @@ type PaymentDraftService struct {
 
 type PaymentDraftReq struct {
 	// an optional title of payment
-	Title string `json:"title"`
+	Title string `json:"title,omitempty"`
 	// an optional future date/time
-	ScheduleFor string `json:"schedule_for"`
+	ScheduleFor string `json:"schedule_for,omitempty"`
 	// a list of planned transactions
-	Payments []PaymentDraftPayment `json:"payments"`
+	Payments []PaymentDraftPayment `json:"payments,omitempty"`
 }
 
 type PaymentDraftResp struct {
 	// the ID of the created draft payment
-	Id string `json:"id"`
+	Id string `json:"id,omitempty"`
 }
 
 type PaymentDraftPayment struct {
 	// the transaction currency
-	Currency string `json:"currency"`
+	Currency string `json:"currency,omitempty"`
 	// the transaction amount
-	Amount int `json:"amount"`
+	Amount int `json:"amount,omitempty"`
 	// the ID of the account to pay from (must be the same for all payments json)
-	AccountId string                      `json:"account_id"`
-	Receiver  PaymentDraftPaymentReceiver `json:"receiver,omitempty"`
+	AccountId string                      `json:"account_id,omitempty"`
+	Receiver  PaymentDraftPaymentReceiver `json:"receiver,omitempty,omitempty"`
 	// a mandatory textual reference shown on the transaction
-	Reference string `json:"reference"`
+	Reference string `json:"reference,omitempty"`
 }
 
 type PaymentDraftPaymentReceiver struct {
 	// the ID of the receiving counterparty
-	CounterpartyId string `json:"counterparty_id"`
+	CounterpartyId string `json:"counterparty_id,omitempty"`
 	// an optional ID of the receiving counterparty's account, can be own account (only for internal counterparties)
-	AccountId string `json:"account_id,optional"`
+	AccountId string `json:"account_id,optional,omitempty"`
 }
 
 type PaymentDrafts struct {
 	// a list of payments
-	PaymentOrders []PaymentOrder `json:"payment_orders"`
+	PaymentOrders []PaymentOrder `json:"payment_orders,omitempty"`
 }
 
 type PaymentOrder struct {
 	// the ID of the draft payment
-	Id string `json:"id"`
+	Id string `json:"id,omitempty"`
 	// an optional future date/time
-	ScheduledFor string `json:"scheduled_for,optional"`
+	ScheduledFor string `json:"scheduled_for,optional,omitempty"`
 	// an optional title of payment
-	Title string `json:"title,optional"`
+	Title string `json:"title,optional,omitempty"`
 	// count of payments in current draft
-	PaymentsCount int `json:"payments_count"`
+	PaymentsCount int `json:"payments_count,omitempty"`
 }
 
 type PaymentDraftDetail struct {
 	// an optional future date/time
-	ScheduledFor string `json:"scheduled_for"`
+	ScheduledFor string `json:"scheduled_for,omitempty"`
 	// an optional title of payment
-	Title string `json:"title"`
+	Title string `json:"title,omitempty"`
 	// a list of payments
-	Payments []PaymentDraftDetailPayment `json:"payments"`
+	Payments []PaymentDraftDetailPayment `json:"payments,omitempty"`
 }
 
 type PaymentDraftState string
@@ -88,21 +88,21 @@ const (
 )
 
 type PaymentDraftDetailPayment struct {
-	Id     string           `json:"id"`
-	Amount ExchangeRateResp `json:"amount"`
+	Id     string           `json:"id,omitempty"`
+	Amount ExchangeRateResp `json:"amount,omitempty"`
 	// the ID of the account to pay from
-	AccountId string `json:"account_id"`
+	AccountId string `json:"account_id,omitempty"`
 	// an optional textual reference shown on the transaction
-	Reference string                      `json:"reference,omitempty"`
-	Receiver  PaymentDraftPaymentReceiver `json:"receiver"`
+	Reference string                      `json:"reference,omitempty,omitempty"`
+	Receiver  PaymentDraftPaymentReceiver `json:"receiver,omitempty"`
 	// the state of the transaction, one of CREATED, PENDING, COMPLETED, REVERTED, DECLINED, CANCELLED, FAILED, DELETED
-	State PaymentDraftState `json:"state"`
+	State PaymentDraftState `json:"state,omitempty"`
 	// an optional textual description of state reason
-	Reason string `json:"reason,omitempty"`
+	Reason string `json:"reason,omitempty,omitempty"`
 	// an optional textual description of error
-	ErrorMessage string `json:"error_message,omitempty"`
+	ErrorMessage string `json:"error_message,omitempty,omitempty"`
 	// explanation of conversation process
-	CurrentChargeOptions ExchangeRateResp `json:"current_charge_options"`
+	CurrentChargeOptions ExchangeRateResp `json:"current_charge_options,omitempty"`
 }
 
 // Create:

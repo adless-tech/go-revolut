@@ -34,56 +34,56 @@ const (
 
 type RevolutCounterpartyReq struct {
 	// the type of the Revolut profile, business or personal
-	ProfileType CounterpartyProfileType `json:"profile_type"`
+	ProfileType CounterpartyProfileType `json:"profile_type,omitempty"`
 	// an optional name. Provide only with personal profile_type
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty,omitempty"`
 	// an optional phone number of the counterparty. Provide only with personal profile_type.
-	Phone string `json:"phone,omitempty"`
+	Phone string `json:"phone,omitempty,omitempty"`
 	// an optional email address of an admin of a public Revolut Business account. Provide only with business profile_type.
-	Email string `json:"email,omitempty"`
+	Email string `json:"email,omitempty,omitempty"`
 }
 
 type NonRevolutCounterpartyReq struct {
 	// an optional name of the external company counterparty, this field must exist when individual_name does not
-	CompanyName  string                                `json:"company_name,omitempty"`
-	InvidualName NonRevolutCounterpartyReqInvidualName `json:"invidual_name,omitempty"`
+	CompanyName  string                                `json:"company_name,omitempty,omitempty"`
+	InvidualName NonRevolutCounterpartyReqInvidualName `json:"invidual_name,omitempty,omitempty"`
 	// the country of the bank
-	BankCountry string `json:"bank_country"`
+	BankCountry string `json:"bank_country,omitempty"`
 	// the currency of a counterparty's account
-	Currency string `json:"currency"`
+	Currency string `json:"currency,omitempty"`
 	// bank account number
-	AccountNo string `json:"account_no"`
+	AccountNo string `json:"account_no,omitempty"`
 	// sort code
-	SortCode string `json:"sort_code"`
+	SortCode string `json:"sort_code,omitempty"`
 	// routing transit number
-	RoutingNumber string `json:"routing_number"`
+	RoutingNumber string `json:"routing_number,omitempty"`
 	// an optional email address of the beneficiary
-	Email string `json:"email,omitempty"`
+	Email string `json:"email,omitempty,omitempty"`
 	// an optional phone number of the beneficiary
-	Phone   string                           `json:"phone,omitempty"`
-	Address NonRevolutCounterpartyReqAddress `json:"address"`
+	Phone   string                           `json:"phone,omitempty,omitempty"`
+	Address NonRevolutCounterpartyReqAddress `json:"address,omitempty"`
 }
 
 type NonRevolutCounterpartyReqInvidualName struct {
 	// an optional first name of the external individual counterparty, this field must exist when company_name does not
-	FirstName string `json:"first_name,omitempty"`
+	FirstName string `json:"first_name,omitempty,omitempty"`
 	// an optional last name of the external individual counterparty, this field must exist when company_name does not
-	LastName string `json:"last_name,omitempty"`
+	LastName string `json:"last_name,omitempty,omitempty"`
 }
 
 type NonRevolutCounterpartyReqAddress struct {
 	// an optional address line 1 of the counterparty
-	StreetLine1 string `json:"street_line1,omitempty"`
+	StreetLine1 string `json:"street_line1,omitempty,omitempty"`
 	// an optional address line 2 of the counterparty
-	StreetLine2 string `json:"street_line2,omitempty"`
+	StreetLine2 string `json:"street_line2,omitempty,omitempty"`
 	// an optional region of the counterparty
-	Region string `json:"region,omitempty"`
+	Region string `json:"region,omitempty,omitempty"`
 	// an optional postal code of the counterparty
-	Postcode string `json:"postcode,omitempty"`
+	Postcode string `json:"postcode,omitempty,omitempty"`
 	// an optional city of the counterparty
-	City string `json:"city,omitempty"`
+	City string `json:"city,omitempty,omitempty"`
 	// an optional the bankCountry of the counterparty
-	Country string `json:"country,omitempty"`
+	Country string `json:"country,omitempty,omitempty"`
 }
 
 type CounterpartyState string
@@ -95,23 +95,23 @@ const (
 
 type CounterpartyResp struct {
 	// the ID of the counterparty
-	Id string `json:"id"`
+	Id string `json:"id,omitempty"`
 	// the name of the counterparty
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 	// the phone number of the counterparty
-	Phone string `json:"phone"`
+	Phone string `json:"phone,omitempty"`
 	// the type of the Revolut profile, business or personal
-	ProfileType CounterpartyProfileType `json:"profile_type"`
+	ProfileType CounterpartyProfileType `json:"profile_type,omitempty"`
 	// the country of the bank
-	Country string `json:"country"`
+	Country string `json:"country,omitempty"`
 	// the state of the counterparty, one of created, deleted
-	State CounterpartyState `json:"state"`
+	State CounterpartyState `json:"state,omitempty"`
 	// the instant when the counterparty was created
-	CreatedAt time.Time `json:"created_at"`
+	CreatedAt time.Time `json:"created_at,omitempty"`
 	// the instant when the counterparty was last updated
-	UpdatedAt time.Time `json:"updated_at"`
+	UpdatedAt time.Time `json:"updated_at,omitempty"`
 	// the list of public accounts of this counterparty
-	Accounts []CounterpartyRespAccount `json:"accounts"`
+	Accounts []CounterpartyRespAccount `json:"accounts,omitempty"`
 }
 
 type CounterpartyRecipientCharges string
@@ -123,26 +123,26 @@ const (
 
 type CounterpartyRespAccount struct {
 	// the ID of a counterparty's account
-	Id string `json:"id"`
+	Id string `json:"id,omitempty"`
 	// the currency of a counterparty's account
-	Currency string `json:"currency"`
+	Currency string `json:"currency,omitempty"`
 	// the type of account, revolut or external
-	Type string `json:"type"`
+	Type string `json:"type,omitempty"`
 	// bank account number
-	AccountNo string `json:"account_no"`
+	AccountNo string `json:"account_no,omitempty"`
 	// IBAN
-	Iban string `json:"iban"`
+	Iban string `json:"iban,omitempty"`
 	// sort code
-	SortCode    string `json:"sort_code"`
-	Email       string `json:"email"`
-	Name        string `json:"name"`
-	BankCountry string `json:"bank_country"`
+	SortCode    string `json:"sort_code,omitempty"`
+	Email       string `json:"email,omitempty"`
+	Name        string `json:"name,omitempty"`
+	BankCountry string `json:"bank_country,omitempty"`
 	// routing transit number
-	RoutingNumber string `json:"routing_number"`
+	RoutingNumber string `json:"routing_number,omitempty"`
 	// BIC
-	Bic string `json:"bic"`
+	Bic string `json:"bic,omitempty"`
 	// indicates the possibility of the recipient charges: no or expected
-	RecipientCharges CounterpartyRecipientCharges `json:"recipient_charges"`
+	RecipientCharges CounterpartyRecipientCharges `json:"recipient_charges,omitempty"`
 }
 
 // AddRevolut: You can create a counterparty for an existing Revolut user.

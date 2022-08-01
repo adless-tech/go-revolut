@@ -19,17 +19,17 @@ type TransferService struct {
 type TransferReq struct {
 	// a unique value used to handle duplicates submitted as a
 	// result of lost connection or another client error (40 characters max)
-	RequestId string `json:"request_id"`
+	RequestId string `json:"request_id,omitempty"`
 	// the ID of a source account
-	SourceAccountId string `json:"source_account_id"`
+	SourceAccountId string `json:"source_account_id,omitempty"`
 	// the ID of a target account
-	TargetAccountId string `json:"target_account_id"`
+	TargetAccountId string `json:"target_account_id,omitempty"`
 	// the transaction amount
-	Amount float64 `json:"amount"`
+	Amount float64 `json:"amount,omitempty"`
 	// the transaction currency, both source and target accounts should be in this currency
-	Currency string `json:"currency"`
+	Currency string `json:"currency,omitempty"`
 	// an optional textual reference shown on the transaction
-	Reference string `json:"reference,omitempty"`
+	Reference string `json:"reference,omitempty,omitempty"`
 }
 
 type TransferState string
@@ -43,13 +43,13 @@ const (
 
 type TransferResp struct {
 	// the ID of the created transaction
-	Id string `json:"id"`
+	Id string `json:"id,omitempty"`
 	// the transction state: pending, completed, declined or failed
-	State string `json:"state"`
+	State string `json:"state,omitempty"`
 	// the instant when the transaction was created
-	CreatedAt time.Time `json:"created_at"`
+	CreatedAt time.Time `json:"created_at,omitempty"`
 	// the instant when the transaction was completed
-	CompletedAt time.Time `json:"completed_at"`
+	CompletedAt time.Time `json:"completed_at,omitempty"`
 }
 
 // Create: This endpoint processes transfers between accounts of the business with the same currency.

@@ -81,8 +81,8 @@ const (
 )
 
 type Amount struct {
-	Value    int    `json:"value"`
-	Currency string `json:"currency"`
+	Value    int    `json:"value,omitempty"`
+	Currency string `json:"currency,omitempty"`
 }
 
 type FeeType string
@@ -94,134 +94,134 @@ const (
 
 type Fee struct {
 	// Fee amount
-	Value int `json:"value"`
+	Value int `json:"value,omitempty"`
 	// Fee currency
-	Currency string `json:"currency"`
+	Currency string `json:"currency,omitempty"`
 	// Fee type
-	Type FeeType `json:"type"`
+	Type FeeType `json:"type,omitempty"`
 }
 
 type Payment struct {
-	Type          string `json:"type"`
-	Amount        Amount `json:"amount"`
-	CreatedDate   int64  `json:"created_date"`
-	UpdatedDate   int64  `json:"updated_date"`
-	CompletedDate int    `json:"completed_date"`
-	Card          Card   `json:"card"`
+	Type          string `json:"type,omitempty"`
+	Amount        Amount `json:"amount,omitempty"`
+	CreatedDate   int64  `json:"created_date,omitempty"`
+	UpdatedDate   int64  `json:"updated_date,omitempty"`
+	CompletedDate int    `json:"completed_date,omitempty"`
+	Card          Card   `json:"card,omitempty"`
 }
 
 type ThreeDs struct {
 	// 3DS check result
-	State TreeDsState `json:"state"`
+	State TreeDsState `json:"state,omitempty"`
 	// 3DS version
-	Version int `json:"version"`
+	Version int `json:"version,omitempty"`
 }
 
 type Check struct {
 	// Confirms whether a proxy number is used or not
-	Proxy bool `json:"proxy"`
+	Proxy bool `json:"proxy,omitempty"`
 	// Confirms whether a VPN connection is used or not
-	Vpn bool `json:"vpn"`
+	Vpn bool `json:"vpn,omitempty"`
 	// Country name associated with the IP address of the card used
-	CountryByIp string  `json:"country_by_ip"`
-	ThreeDs     ThreeDs `json:"three_ds"`
+	CountryByIp string  `json:"country_by_ip,omitempty"`
+	ThreeDs     ThreeDs `json:"three_ds,omitempty"`
 	// Authorization code returned by the Processor
-	AuthorizationCode string `json:"authorization_code"`
+	AuthorizationCode string `json:"authorization_code,omitempty"`
 	// CVV verification
-	CvvVerification CvvVerification `json:"cvv_verification"`
+	CvvVerification CvvVerification `json:"cvv_verification,omitempty"`
 	// Address verification
-	Address CheckResult `json:"address"`
+	Address CheckResult `json:"address,omitempty"`
 	// Postal code verification
-	PostalCode CheckResult `json:"postal_code"`
+	PostalCode CheckResult `json:"postal_code,omitempty"`
 	// Cardholder verification
-	CardHolder CheckResult `json:"card_holder"`
+	CardHolder CheckResult `json:"card_holder,omitempty"`
 }
 
 type Card struct {
 	// Card type
-	CardType CardType `json:"card_type"`
+	CardType CardType `json:"card_type,omitempty"`
 	// Card funding
-	Funding Funding `json:"funding"`
+	Funding Funding `json:"funding,omitempty"`
 	// Card BIN
-	CardBin string `json:"card_bin"`
+	CardBin string `json:"card_bin,omitempty"`
 	// Card last four digits
-	CardLastFour string `json:"card_last_four"`
+	CardLastFour string `json:"card_last_four,omitempty"`
 	// Card expiry date in the format of MM/YY
-	CardExpiry string `json:"card_expiry"`
+	CardExpiry string `json:"card_expiry,omitempty"`
 	// Cardholder name
-	CardholderName string         `json:"cardholder_name"`
-	Checks         Check          `json:"checks"`
-	RiskLevel      RiskLevel      `json:"risk_level"`
-	BillingAddress BillingAddress `json:"billing_address"`
+	CardholderName string         `json:"cardholder_name,omitempty"`
+	Checks         Check          `json:"checks,omitempty"`
+	RiskLevel      RiskLevel      `json:"risk_level,omitempty"`
+	BillingAddress BillingAddress `json:"billing_address,omitempty"`
 }
 
 type BillingAddress struct {
 	// Street line 1 information
-	StreetLine1 string `json:"street_line_1"`
+	StreetLine1 string `json:"street_line_1,omitempty"`
 	// Street line 2 information
-	StreetLine2 string `json:"street_line_2"`
+	StreetLine2 string `json:"street_line_2,omitempty"`
 	// Region name
-	Region string `json:"region"`
+	Region string `json:"region,omitempty"`
 	// City name
-	City string `json:"city"`
+	City string `json:"city,omitempty"`
 	// Country associated with the address
-	CountryCode string `json:"country_code"`
+	CountryCode string `json:"country_code,omitempty"`
 	// Postcode associated with the address
-	Postcode string `json:"postcode"`
+	Postcode string `json:"postcode,omitempty"`
 }
 
 type OrderResp struct {
 	// Order ID for a merchant
-	Id string `json:"id"`
+	Id string `json:"id,omitempty"`
 	// Temporary ID for a customer
-	PublicId string `json:"public_id"`
+	PublicId string `json:"public_id,omitempty"`
 	// Temporary ID for a customer
-	Type OrderType `json:"type"`
+	Type OrderType `json:"type,omitempty"`
 	// Order state
-	State OrderState `json:"state"`
+	State OrderState `json:"state,omitempty"`
 	// Order creation date, measured in ms since the Unix epoch (UTC)
-	CreatedDate int64 `json:"created_date"`
+	CreatedDate int64 `json:"created_date,omitempty"`
 	// Last update date, measured in ms since the Unix epoch (UTC)
-	UpdatedDate int64 `json:"updated_date"`
+	UpdatedDate int64 `json:"updated_date,omitempty"`
 	// Order completion date, measured in ms since the Unix epoch (UTC)
-	CompletedDate int64  `json:"completed_date"`
-	OrderAmount   Amount `json:"order_amount"`
+	CompletedDate int64  `json:"completed_date,omitempty"`
+	OrderAmount   Amount `json:"order_amount,omitempty"`
 	// Merchant order ID
-	MerchantOrderExtRef string `json:"merchant_order_ext_ref"`
+	MerchantOrderExtRef string `json:"merchant_order_ext_ref,omitempty"`
 	// Merchant customer ID
-	MerchantCustomerExtRef string `json:"merchant_customer_ext_ref"`
+	MerchantCustomerExtRef string `json:"merchant_customer_ext_ref,omitempty"`
 	// Customer e-mail
-	Email           string           `json:"email"`
-	SettledAmount   Amount           `json:"settled_amount"`
-	RefundedAmount  Amount           `json:"refunded_amount"`
-	Fees            []Fee            `json:"fees"`
-	Payments        []Payment        `json:"payments"`
-	Attempts        []AttemptRelated `json:"attempts"`
-	Related         []AttemptRelated `json:"related"`
-	ShippingAddress ShippingAddress  `json:"shipping_address"`
-	Phone           string           `json:"phone"`
-	CustomerID      string           `json:"customer_id"`
+	Email           string           `json:"email,omitempty"`
+	SettledAmount   Amount           `json:"settled_amount,omitempty"`
+	RefundedAmount  Amount           `json:"refunded_amount,omitempty"`
+	Fees            []Fee            `json:"fees,omitempty"`
+	Payments        []Payment        `json:"payments,omitempty"`
+	Attempts        []AttemptRelated `json:"attempts,omitempty"`
+	Related         []AttemptRelated `json:"related,omitempty"`
+	ShippingAddress ShippingAddress  `json:"shipping_address,omitempty"`
+	Phone           string           `json:"phone,omitempty"`
+	CustomerID      string           `json:"customer_id,omitempty"`
 }
 
 type AttemptRelated struct {
-	Id     string    `json:"id"`
-	Type   OrderType `json:"type"`
-	Amount Amount    `json:"amount"`
+	Id     string    `json:"id,omitempty"`
+	Type   OrderType `json:"type,omitempty"`
+	Amount Amount    `json:"amount,omitempty"`
 }
 
 type ShippingAddress struct {
 	// Shipping address: Street line 1 information
-	StreetLine1 string `json:"street_line_1"`
+	StreetLine1 string `json:"street_line_1,omitempty"`
 	// Shipping address: Street line 2 information
-	StreetLine2 string `json:"street_line_2"`
+	StreetLine2 string `json:"street_line_2,omitempty"`
 	// Shipping address: Region name
-	Region string `json:"region"`
+	Region string `json:"region,omitempty"`
 	// Shipping address: City name
-	City string `json:"city"`
+	City string `json:"city,omitempty"`
 	// Shipping address: Country associated with the address
-	CountryCode string `json:"country_code"`
+	CountryCode string `json:"country_code,omitempty"`
 	// Shipping address: Postcode associated with the address
-	Postcode string `json:"postcode"`
+	Postcode string `json:"postcode,omitempty"`
 }
 
 type CaptureMode string
@@ -233,53 +233,53 @@ const (
 
 type OrderReq struct {
 	// Minor amount
-	Amount int `json:"amount"`
+	Amount int `json:"amount,omitempty"`
 	// Capture mode. If it is equal to null then AUTOMATIC is used
-	CaptureMode CaptureMode `json:"capture_mode"`
+	CaptureMode CaptureMode `json:"capture_mode,omitempty"`
 	// Merchant order ID
-	MerchantOrderID string `json:"merchant_order_id"`
+	MerchantOrderID string `json:"merchant_order_id,omitempty"`
 	// Customer e-mail
-	CustomerEmail string `json:"customer_email"`
+	CustomerEmail string `json:"customer_email,omitempty"`
 	// Order description
-	Description string `json:"description"`
+	Description string `json:"description,omitempty"`
 	// Currency code
-	Currency string `json:"currency"`
+	Currency string `json:"currency,omitempty"`
 	// Settlement currency. If it is equal to null then the payment is settled in transaction currency.
-	SettlementCurrency string `json:"settlement_currency"`
+	SettlementCurrency string `json:"settlement_currency,omitempty"`
 	// Merchant customer ID
-	MerchantCustomerID string `json:"merchant_customer_id"`
+	MerchantCustomerID string `json:"merchant_customer_id,omitempty"`
 }
 
 type RefundReq struct {
 	// Minor amount
-	Amount int `json:"amount"`
+	Amount int `json:"amount,omitempty"`
 	// Merchant order ID
-	MerchantOrderID string `json:"merchant_order_id"`
+	MerchantOrderID string `json:"merchant_order_id,omitempty"`
 	// Order description
-	Description string `json:"description"`
+	Description string `json:"description,omitempty"`
 	// Currency code
-	Currency string `json:"currency"`
+	Currency string `json:"currency,omitempty"`
 }
 
 type RefundResp struct {
 	// Order ID for a merchant
-	Id string `json:"id"`
+	Id string `json:"id,omitempty"`
 	// Order type
-	Type OrderType `json:"type"`
+	Type OrderType `json:"type,omitempty"`
 	// Order state
-	State OrderState `json:"state"`
+	State OrderState `json:"state,omitempty"`
 	// Order creation date, measured in ms since the Unix epoch (UTC)
-	CreatedDate int64 `json:"created_date"`
+	CreatedDate int64 `json:"created_date,omitempty"`
 	// Last update date, measured in ms since the Unix epoch (UTC)
-	UpdatedDate int64 `json:"updated_date"`
+	UpdatedDate int64 `json:"updated_date,omitempty"`
 	// Order completion date, measured in ms since the Unix epoch (UTC)
-	CompletedDate int64  `json:"completed_date"`
-	OrderAmount   Amount `json:"order_amount"`
+	CompletedDate int64  `json:"completed_date,omitempty"`
+	OrderAmount   Amount `json:"order_amount,omitempty"`
 	// Merchant customer ID
-	MerchantCustomerExtRef string `json:"merchant_customer_ext_ref"`
+	MerchantCustomerExtRef string `json:"merchant_customer_ext_ref,omitempty"`
 	// Customer e-mail
-	Email   string           `json:"email"`
-	Related []AttemptRelated `json:"related"`
+	Email   string           `json:"email,omitempty"`
+	Related []AttemptRelated `json:"related,omitempty"`
 }
 
 // Create:

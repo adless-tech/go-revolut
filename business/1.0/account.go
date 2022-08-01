@@ -26,21 +26,21 @@ const (
 
 type AccountResp struct {
 	// the account ID
-	Id string `json:"id"`
+	Id string `json:"id,omitempty"`
 	// the account name
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 	// the available balance
-	Balance float64 `json:"balance"`
+	Balance float64 `json:"balance,omitempty"`
 	// the account currency
-	Currency string `json:"currency"`
+	Currency string `json:"currency,omitempty"`
 	// the account state, one of active, inactive
-	State AccountState `json:"state"`
+	State AccountState `json:"state,omitempty"`
 	// determines if the account is visible to other businesses on Revolut
-	Public bool `json:"public"`
+	Public bool `json:"public,omitempty"`
 	// the instant when the account was created
-	UpdatedAt time.Time `json:"updated_at"`
+	UpdatedAt time.Time `json:"updated_at,omitempty"`
 	// the instant when the account was last updated
-	CreatedAt time.Time `json:"created_at"`
+	CreatedAt time.Time `json:"created_at,omitempty"`
 }
 
 type AccountSchema string
@@ -56,27 +56,27 @@ const (
 
 type AccountDetailResp struct {
 	// IBAN
-	Iban string `json:"iban"`
+	Iban string `json:"iban,omitempty"`
 	// BIC
-	Bic string `json:"bic"`
+	Bic string `json:"bic,omitempty"`
 	// the account number
-	AccountNo string `json:"account_no"`
+	AccountNo string `json:"account_no,omitempty"`
 	// the sort code
-	SortCode string `json:"sort_code"`
+	SortCode string `json:"sort_code,omitempty"`
 	// the routing number
-	RoutingNumber string `json:"routing_number"`
+	RoutingNumber string `json:"routing_number,omitempty"`
 	// the beneficiary name
-	Beneficiary        string             `json:"beneficiary"`
-	BeneficiaryAddress BeneficiaryAddress `json:"beneficiary_address"`
+	Beneficiary        string             `json:"beneficiary,omitempty"`
+	BeneficiaryAddress BeneficiaryAddress `json:"beneficiary_address,omitempty"`
 	// the country of the bank
-	BankCountry string `json:"bank_country"`
+	BankCountry string `json:"bank_country,omitempty"`
 	// determines if this account address is pooled or unique
-	Pooled bool `json:"pooled"`
+	Pooled bool `json:"pooled,omitempty"`
 	// the reference of the pooled account
-	UniqueReference string `json:"unique_reference"`
+	UniqueReference string `json:"unique_reference,omitempty"`
 	// the list of supported schemes, possible values: chaps, bacs, faster_payments, sepa, swift, ach
-	Schemes       []AccountSchema `json:"schemes"`
-	EstimatedTime EstimatedTime   `json:"estimated_time"`
+	Schemes       []AccountSchema `json:"schemes,omitempty"`
+	EstimatedTime EstimatedTime   `json:"estimated_time,omitempty"`
 }
 
 type AccountUnit string
@@ -88,26 +88,26 @@ const (
 
 type EstimatedTime struct {
 	// the unit of the inbound transfer time estimate, possible values: days, hours
-	Unit AccountUnit `json:"unit"`
+	Unit AccountUnit `json:"unit,omitempty"`
 	// the maximum estimate
-	Min int `json:"min"`
+	Min int `json:"min,omitempty"`
 	// the minimum estimate
-	Max int `json:"max"`
+	Max int `json:"max,omitempty"`
 }
 
 type BeneficiaryAddress struct {
 	// the address line 1 of the beneficiary
-	StreetLine1 string `json:"street_line1"`
+	StreetLine1 string `json:"street_line1,omitempty"`
 	// the address line 2 of the beneficiary
-	StreetLine2 string `json:"street_line2"`
+	StreetLine2 string `json:"street_line2,omitempty"`
 	// the region of the beneficiary
-	Region string `json:"region"`
+	Region string `json:"region,omitempty"`
 	// the city of the beneficiary
-	City string `json:"city"`
+	City string `json:"city,omitempty"`
 	// the country of the beneficiary
-	Country string `json:"country"`
+	Country string `json:"country,omitempty"`
 	// the postal code of the beneficiary
-	Postcode string `json:"postcode"`
+	Postcode string `json:"postcode,omitempty"`
 }
 
 // List: This endpoint retrieves your accounts.

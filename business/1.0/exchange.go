@@ -29,50 +29,50 @@ type ExchangeRateReq struct {
 
 type ExchangeRateResp struct {
 	// information about the currency to exchange from
-	From Amount `json:"from"`
+	From Amount `json:"from,omitempty"`
 	// information about the currency to exchange to
-	To Amount `json:"to"`
+	To Amount `json:"to,omitempty"`
 	// exchange rate
-	Rate float64 `json:"rate"`
+	Rate float64 `json:"rate,omitempty"`
 	// fee for the operation
-	Fee Amount `json:"fee"`
+	Fee Amount `json:"fee,omitempty"`
 	// date of proposed exchange rate
-	RateDate time.Time `json:"rate_date"`
+	RateDate time.Time `json:"rate_date,omitempty"`
 }
 
 type Amount struct {
-	Amount   float64 `json:"amount"`
-	Currency string  `json:"currency"`
+	Amount   float64 `json:"amount,omitempty"`
+	Currency string  `json:"currency,omitempty"`
 }
 
 type ExchangeReq struct {
 	// information about the account you want to exchange from
-	From ExchangeAmount `json:"from"`
+	From ExchangeAmount `json:"from,omitempty"`
 	// information about the account you want to exchange to
-	To ExchangeAmount `json:"to"`
+	To ExchangeAmount `json:"to,omitempty"`
 	// a user-provided exchange reference
-	Reference string `json:"reference"`
+	Reference string `json:"reference,omitempty"`
 	// a unique value used to handle duplicates submitted as a result of lost connection or another client error (40 characters max)
-	RequestId string `json:"request_id"`
+	RequestId string `json:"request_id,omitempty"`
 }
 type ExchangeAmount struct {
 	// the account ID
-	AccountId string  `json:"account_id"`
-	Amount    float64 `json:"amount,omitempty"`
-	Currency  string  `json:"currency"`
+	AccountId string  `json:"account_id,omitempty"`
+	Amount    float64 `json:"amount,omitempty,omitempty"`
+	Currency  string  `json:"currency,omitempty"`
 }
 
 type ExchangeResp struct {
 	// the ID of transaction
-	Id string `json:"id"`
+	Id string `json:"id,omitempty"`
 	// is always exchange
-	State string `json:"state"`
+	State string `json:"state,omitempty"`
 	// reason code for declined or failed transaction state
-	ReasonCode string `json:"reason_code"`
+	ReasonCode string `json:"reason_code,omitempty"`
 	// the instant when the transaction was created
-	CreatedAt time.Time `json:"created_at"`
+	CreatedAt time.Time `json:"created_at,omitempty"`
 	// the instant when the transaction was completed
-	CompletedAt time.Time `json:"completed_at"`
+	CompletedAt time.Time `json:"completed_at,omitempty"`
 }
 
 // Rate:

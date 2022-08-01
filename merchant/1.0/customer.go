@@ -15,15 +15,15 @@ type CustomerService struct {
 }
 
 type CreateCustomerReq struct {
-	FullName     string `json:"full_name"`
-	BusinessName string `json:"business_name"`
-	Email        string `json:"email"`
-	Phone        string `json:"phone"`
+	FullName     string `json:"full_name,omitempty"`
+	BusinessName string `json:"business_name,omitempty"`
+	Email        string `json:"email,omitempty"`
+	Phone        string `json:"phone,omitempty"`
 }
 
 type CreateCustomerResp struct {
-	ID    string `json:"id"`
-	Email string `json:"email"`
+	ID    string `json:"id,omitempty"`
+	Email string `json:"email,omitempty"`
 }
 
 // Create creates a customer

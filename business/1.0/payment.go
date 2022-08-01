@@ -20,27 +20,27 @@ type PaymentService struct {
 
 type PaymentReq struct {
 	// the client provided ID of the transaction (40 characters max)
-	RequestId string `json:"request_id"`
+	RequestId string `json:"request_id,omitempty"`
 	// the ID of the account to pay from
-	AccountId string          `json:"account_id"`
-	Receiver  PaymentReceiver `json:"receiver"`
+	AccountId string          `json:"account_id,omitempty"`
+	Receiver  PaymentReceiver `json:"receiver,omitempty"`
 	// the transaction amount
-	Amount float64 `json:"amount"`
+	Amount float64 `json:"amount,omitempty"`
 	// the transaction currency
-	Currency string `json:"currency"`
+	Currency string `json:"currency,omitempty"`
 	// an optional textual reference shown on the transaction
-	Reference string `json:"reference,omitempty"`
+	Reference string `json:"reference,omitempty,omitempty"`
 	// a future date/time
 	// doc: https://revolut-engineering.github.io/api-docs/business-api/#payments-schedule-payment
-	ScheduleFor string `json:"schedule_for,omitempty"`
+	ScheduleFor string `json:"schedule_for,omitempty,omitempty"`
 }
 
 type PaymentReceiver struct {
 	// the ID of the receiving counterparty
-	CounterpartyId string `json:"counterparty_id"`
+	CounterpartyId string `json:"counterparty_id,omitempty"`
 	// the ID of the receiving counterparty's account, provide only for payments to business counterparties,
 	//can be own account (only for internal counterparties)
-	AccountId string `json:"account_id"`
+	AccountId string `json:"account_id,omitempty"`
 }
 
 type PaymentState string
@@ -73,85 +73,85 @@ const (
 
 type TransactionResp struct {
 	// the ID of transaction
-	Id string `json:"id"`
+	Id string `json:"id,omitempty"`
 	// he transaction type, one of atm, card_payment, card_refund, card_chargeback,
 	//card_credit, exchange, transfer, loan, fee, refund, topup, topup_return, tax, tax_refund
-	Type PaymentType `json:"type"`
+	Type PaymentType `json:"type,omitempty"`
 	// the client provided request ID
-	RequestId string `json:"request_id,omitempty"`
+	RequestId string `json:"request_id,omitempty,omitempty"`
 	// the transction state: pending, completed, declined or failed
-	State PaymentState `json:"state"`
+	State PaymentState `json:"state,omitempty"`
 	// the instant when the transaction was created
-	CreatedAt time.Time `json:"created_at"`
+	CreatedAt time.Time `json:"created_at,omitempty"`
 	// the instant when the transaction was last updated
-	UpdatedAt time.Time `json:"updated_at"`
+	UpdatedAt time.Time `json:"updated_at,omitempty"`
 	// the instant when the transaction was completed, mandatory for completed state only
-	CompletedAt time.Time `json:"completed_at,omitempty"`
+	CompletedAt time.Time `json:"completed_at,omitempty,omitempty"`
 	// an optional date when the transaction was scheduled for
-	ScheduledFor string `json:"scheduled_for"`
+	ScheduledFor string `json:"scheduled_for,omitempty"`
 	// a user provided payment reference
-	Reference string `json:"reference,omitempty"`
+	Reference string `json:"reference,omitempty,omitempty"`
 	// the legs of transaction, there'll be 2 legs between your Revolut accounts and 1 leg in other cases
-	Legs []TransactionLeg `json:"legs"`
+	Legs []TransactionLeg `json:"legs,omitempty"`
 	// reason code for declined or failed transaction state
-	ReasonCode string `json:"reason_code,omitempty"`
+	ReasonCode string `json:"reason_code,omitempty,omitempty"`
 	// the merchant info (only for card payments)
-	Merchant TransactionMerchant `json:"merchant,omitempty"`
+	Merchant TransactionMerchant `json:"merchant,omitempty,omitempty"`
 	// the card information (only for card payments)
-	Card TransactionCard `json:"card,omitempty"`
+	Card TransactionCard `json:"card,omitempty,omitempty"`
 	// the ID of the original transaction which has been refunded (only for refunds)
-	RelatedTransactionId string `json:"related_transaction_id,omitempty"`
+	RelatedTransactionId string `json:"related_transaction_id,omitempty,omitempty"`
 }
 
 type TransactionLeg struct {
 	// the ID of the leg
-	LegId string `json:"leg_id"`
+	LegId string `json:"leg_id,omitempty"`
 	// the ID of the account the transaction is associated with
-	AccountId    string          `json:"account_id"`
-	Counterparty LegCounterparty `json:"counterparty"`
+	AccountId    string          `json:"account_id,omitempty"`
+	Counterparty LegCounterparty `json:"counterparty,omitempty"`
 	// the transaction amount
-	Amount float64 `json:"amount"`
+	Amount float64 `json:"amount,omitempty"`
 	// the transaction currency
-	Currency string `json:"currency"`
+	Currency string `json:"currency,omitempty"`
 	// the billing amount for cross-currency payments
-	BillAmount float64 `json:"bill_amount"`
+	BillAmount float64 `json:"bill_amount,omitempty"`
 	// the billing currency for cross-currency payments
-	BillCurrency string `json:"bill_currency"`
+	BillCurrency string `json:"bill_currency,omitempty"`
 	// the transaction leg purpose
-	Description string `json:"description"`
+	Description string `json:"description,omitempty"`
 	// a total balance of the account the transaction is associated with (optional)
-	Balance float64 `json:"balance,omitempty"`
+	Balance float64 `json:"balance,omitempty,omitempty"`
 }
 
 type LegCounterparty struct {
 	// the counterparty ID
-	Id string `json:"id"`
+	Id string `json:"id,omitempty"`
 	// the type of account: self, revolut, external
-	Type CounterpartyType `json:"type"`
+	Type CounterpartyType `json:"type,omitempty"`
 	// the counterparty account ID
-	AccountId string `json:"account_id"`
+	AccountId string `json:"account_id,omitempty"`
 }
 
 type TransactionMerchant struct {
 	// the merchant name
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 	// the merchant city
-	City string `json:"city"`
+	City string `json:"city,omitempty"`
 	// the merchant category code
-	CategoryCode string `json:"category_code"`
+	CategoryCode string `json:"category_code,omitempty"`
 	// 3-letter ISO bankCountry code
-	Country string `json:"country"`
+	Country string `json:"country,omitempty"`
 }
 
 type TransactionCard struct {
 	// the masked card number
-	CardNumber string `json:"card_number"`
+	CardNumber string `json:"card_number,omitempty"`
 	// the cardholder's first name
-	FirstName string `json:"first_name"`
+	FirstName string `json:"first_name,omitempty"`
 	// the cardholder's last name
-	LastName string `json:"last_name"`
+	LastName string `json:"last_name,omitempty"`
 	// the cardholder's phone number
-	Phone string `json:"phone"`
+	Phone string `json:"phone,omitempty"`
 }
 
 type TransactionReq struct {

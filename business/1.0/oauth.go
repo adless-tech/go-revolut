@@ -38,13 +38,13 @@ const (
 
 type OAuthResp struct {
 	// the access token
-	AccessToken string `json:"access_token"`
+	AccessToken string `json:"access_token,omitempty"`
 	// "bearer" means that this token is valid to access the API
-	TokenType string `json:"token_type"`
+	TokenType string `json:"token_type,omitempty"`
 	// token expiration time in seconds
-	ExpiresIn int32 `json:"expires_in"`
+	ExpiresIn int32 `json:"expires_in,omitempty"`
 	// A token to be used to request a new access token
-	RefreshToken string `json:"refresh_token"`
+	RefreshToken string `json:"refresh_token,omitempty"`
 }
 
 type AuthorizationCodeResp struct {

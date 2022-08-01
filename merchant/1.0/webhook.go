@@ -16,12 +16,12 @@ type WebhookService struct {
 
 type WebhookUrl struct {
 	// call back endpoint of the client system, https is the supported protocol
-	Url string `json:"url"`
+	Url string `json:"url,omitempty"`
 }
 
 type WebhookResp struct {
 	// Order ID of a completed order
-	OrderId string `json:"order_id"`
+	OrderId string `json:"order_id,omitempty"`
 }
 
 // Set:
