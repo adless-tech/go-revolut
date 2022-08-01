@@ -101,14 +101,25 @@ type Fee struct {
 	Type FeeType `json:"type,omitempty"`
 }
 
-type Payment struct {
-	Type          string `json:"type,omitempty"`
+type PaymentMethod struct {
 	Amount        Amount `json:"amount,omitempty"`
 	State         string `json:"state,omitempty"`
 	CreatedDate   int64  `json:"created_date,omitempty"`
 	UpdatedDate   int64  `json:"updated_date,omitempty"`
 	CompletedDate int    `json:"completed_date,omitempty"`
 	Card          Card   `json:"card,omitempty"`
+	FailureReason string `json:"failure_reason,omitempty"`
+}
+
+type Payment struct {
+	Type          string        `json:"type,omitempty"`
+	Amount        Amount        `json:"amount,omitempty"`
+	State         string        `json:"state,omitempty"`
+	CreatedDate   int64         `json:"created_date,omitempty"`
+	UpdatedDate   int64         `json:"updated_date,omitempty"`
+	CompletedDate int           `json:"completed_date,omitempty"`
+	FailureReason string        `json:"failure_reason,omitempty"`
+	PaymentMethod PaymentMethod `json:"payment_method,omitempty"`
 }
 
 type ThreeDs struct {
