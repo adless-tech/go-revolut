@@ -200,6 +200,7 @@ type OrderResp struct {
 	Related         []AttemptRelated `json:"related"`
 	ShippingAddress ShippingAddress  `json:"shipping_address"`
 	Phone           string           `json:"phone"`
+	CustomerID      string           `json:"customer_id"`
 }
 
 type AttemptRelated struct {
