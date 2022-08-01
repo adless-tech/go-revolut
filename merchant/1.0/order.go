@@ -297,7 +297,7 @@ func (a *OrderService) Create(orderReq *OrderReq) (*OrderResp, error) {
 	}
 
 	if statusCode != http.StatusOK {
-		return nil, errors.New(string(resp))
+		return nil, errors.New(fmt.Sprintf("Status: %d\n\nResponse: %s", statusCode, string(resp)))
 	}
 
 	var r *OrderResp
@@ -321,7 +321,7 @@ func (a *OrderService) WithId(id string) (*OrderResp, error) {
 	}
 
 	if statusCode != http.StatusOK {
-		return nil, errors.New(string(resp))
+		return nil, errors.New(fmt.Sprintf("Status: %d\n\nResponse: %s", statusCode, string(resp)))
 	}
 
 	var r *OrderResp
@@ -346,7 +346,7 @@ func (a *OrderService) Capture(id string) (*OrderResp, error) {
 	}
 
 	if statusCode != http.StatusOK {
-		return nil, errors.New(string(resp))
+		return nil, errors.New(fmt.Sprintf("Status: %d\n\nResponse: %s", statusCode, string(resp)))
 	}
 
 	var r *OrderResp
@@ -371,7 +371,7 @@ func (a *OrderService) Cancel(id string) (*OrderResp, error) {
 	}
 
 	if statusCode != http.StatusOK {
-		return nil, errors.New(string(resp))
+		return nil, errors.New(fmt.Sprintf("Status: %d\n\nResponse: %s", statusCode, string(resp)))
 	}
 
 	var r *OrderResp
@@ -398,7 +398,7 @@ func (a *OrderService) Refund(id string, refundReq *RefundReq) (*RefundResp, err
 	}
 
 	if statusCode != http.StatusOK {
-		return nil, errors.New(string(resp))
+		return nil, errors.New(fmt.Sprintf("Status: %d\n\nResponse: %s", statusCode, string(resp)))
 	}
 
 	var r *RefundResp
