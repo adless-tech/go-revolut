@@ -338,7 +338,7 @@ func (a *OrderService) WithId(id string) (*OrderResp, error) {
 	}
 
 	if statusCode != http.StatusOK {
-		return nil, errors.New(fmt.Sprintf("Status: %d\n\nResponse: %s", statusCode, string(resp)))
+		return nil, errors.New(fmt.Sprintf("%s [status: %d]", string(resp), statusCode))
 	}
 
 	r := &OrderResp{}
@@ -363,7 +363,7 @@ func (a *OrderService) Capture(id string) (*OrderResp, error) {
 	}
 
 	if statusCode != http.StatusOK {
-		return nil, errors.New(fmt.Sprintf("Status: %d\n\nResponse: %s", statusCode, string(resp)))
+		return nil, errors.New(fmt.Sprintf("%s [status: %d]", string(resp), statusCode))
 	}
 
 	r := &OrderResp{}
@@ -388,7 +388,7 @@ func (a *OrderService) Cancel(id string) (*OrderResp, error) {
 	}
 
 	if statusCode != http.StatusOK {
-		return nil, errors.New(fmt.Sprintf("Status: %d\n\nResponse: %s", statusCode, string(resp)))
+		return nil, errors.New(fmt.Sprintf("%s [status: %d]", string(resp), statusCode))
 	}
 
 	r := &OrderResp{}
@@ -415,10 +415,32 @@ func (a *OrderService) Refund(id string, refundReq *RefundReq) (*RefundResp, err
 	}
 
 	if statusCode != http.StatusOK {
-		return nil, errors.New(fmt.Sprintf("Status: %d\n\nResponse: %s", statusCode, string(resp)))
+		return nil, errors.New(fmt.Sprintf("%s [status: %d]", string(resp), statusCode))
 	}
 
 	r := &RefundResp{}
+	if err := json.Unmarshal(resp, r); err != nil {
+		return nil, err
+	}
+
+	return r, nil
+}
+
+func (a *OrderService) Confirm(id string) (*OrderResp, error) {
+	resp, statusCode, err := request.New(request.Config{
+		Method: http.MethodPost,
+		Url:    fmt.Sprintf("%s/api/1.0/orders/%s/confirm", a.domain, id),
+		ApiKey: a.apiKey,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	if statusCode != http.StatusOK {
+		return nil, errors.New(fmt.Sprintf("%s [status: %d]", string(resp), statusCode))
+	}
+
+	r := &OrderResp{}
 	if err := json.Unmarshal(resp, r); err != nil {
 		return nil, err
 	}
