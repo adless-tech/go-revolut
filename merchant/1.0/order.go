@@ -262,6 +262,8 @@ type OrderReq struct {
 	SettlementCurrency string `json:"settlement_currency,omitempty"`
 	// Merchant customer ID
 	MerchantCustomerID string `json:"merchant_customer_id,omitempty"`
+	// CustomerID is used to charge the card-on-file for the customer
+	CustomerID string `json:"customer_id,omitempty"`
 }
 
 type RefundReq struct {
