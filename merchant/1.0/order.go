@@ -300,13 +300,14 @@ type RefundResp struct {
 
 // Create:
 // doc: https://revolut-engineering.github.io/api-docs/merchant-api/#backend-api-backend-api-order-object-create-payment-order
-func (a *OrderService) Create(orderReq *OrderReq) (*OrderResp, error) {
+func (a *OrderService) Create(orderReq *OrderReq, idempotencyKey string) (*OrderResp, error) {
 	resp, statusCode, err := request.New(request.Config{
-		Method:      http.MethodPost,
-		Url:         fmt.Sprintf("%s/api/1.0/orders", a.domain),
-		ApiKey:      a.apiKey,
-		Body:        orderReq,
-		ContentType: request.ContentType_APPLICATION_JSON,
+		Method:         http.MethodPost,
+		Url:            fmt.Sprintf("%s/api/1.0/orders", a.domain),
+		ApiKey:         a.apiKey,
+		Body:           orderReq,
+		ContentType:    request.ContentType_APPLICATION_JSON,
+		IdempotencyKey: idempotencyKey,
 	})
 	if err != nil {
 		return nil, err

@@ -9,11 +9,12 @@ import (
 )
 
 type Config struct {
-	Method      string
-	Url         string
-	ApiKey      string
-	Body        interface{}
-	ContentType ContentType
+	Method         string
+	Url            string
+	ApiKey         string
+	Body           interface{}
+	ContentType    ContentType
+	IdempotencyKey string
 }
 
 type ContentType string
@@ -40,6 +41,10 @@ func New(conf Config) ([]byte, int, error) {
 	}
 
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", conf.ApiKey))
+
+	if conf.IdempotencyKey != "" {
+		req.Header.Set("x-idempotency-key", conf.IdempotencyKey)
+	}
 
 	c := &http.Client{}
 
